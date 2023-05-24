@@ -1,0 +1,120 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+df=pd.read_csv("StudentsPerformance.csv")
+df
+df.isnull()
+
+series = pd.isnull(df["math score"])
+df[series]
+
+series1 = pd.notnull(df["math score"])
+df[series1]
+
+from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder()
+
+df['gender'] = le.fit_transform(df['gender'])
+newdf=df
+df
+
+missing_values = ["Na", "na"]
+df = pd.read_csv("StudentsPerformance.csv", na_values =
+missing_values)
+df
+
+ndf=df
+ndf.fillna(0)
+
+m_v=df['Math Score'].mean()
+df['Math Score'].fillna(value=m_v, inplace=True)
+df
+
+ndf.replace(to_replace = np.nan, value = -99)
+
+ndf.dropna()
+
+ndf.dropna(how = 'all')
+
+ndf.dropna(axis = 1)
+
+new_data = ndf.dropna(axis = 0, how ='any')
+new_data
+
+col = ['Math Score', 'Reading Score' , 'Writing Score','Placement Score']
+df.boxplot(col)
+plt.show()
+
+print(np.where(df['Math Score']>90))
+print(np.where(df['Reading Score']<25))
+print(np.where(df['Writing Score']<30))
+
+fig, ax = plt.subplots(figsize = (18,10))
+ax.scatter(df['Placement Score'], df['Placement offer count'])
+plt.show()
+
+print(np.where((df['Placement Score']<50) & (df['Placement offer count']>1)))
+print(np.where((df['Placement Score']<85) & (df['Placement offer count']<3)))
+
+import numpy as np
+from scipy import stats
+z = np.abs(stats.zscore(df['Math Score']))
+print(z)
+
+threshold = 0.18
+sample_outliers = np.where(z <threshold)
+sample_outliers
+
+import numpy as np
+sorted_rscore= sorted(df['Reading Score'])
+sorted_rscore
+
+q1 = np.percentile(sorted_rscore, 25)
+q3 = np.percentile(sorted_rscore, 75)
+print(q1,q3)
+
+IQR = q3-q1
+lwr_bound = q1-(1.5*IQR)
+upr_bound = q3+(1.5*IQR)
+print(lwr_bound, upr_bound)
+
+r_outliers = []
+for i in sorted_rscore:
+ if (i<lwr_bound or i>upr_bound):
+  r_outliers.append(i)
+print(r_outliers)
+
+df=pd.read_csv("StudentsPerformance.csv")
+df_stud=df
+ninetieth_percentile = np.percentile(df_stud['Math Score'], 90)
+b = np.where(df_stud['Math Score']>ninetieth_percentile,
+ninetieth_percentile, df_stud['Math Score'])
+print("New array:",b)
+
+df_stud.insert(1,"Math Score",b,True)
+df_stud
+
+col = ['Reading Score']
+df.boxplot(col)
+plt.show()
+
+median=np.median(sorted_rscore)
+median
+
+refined_df=df
+refined_df['Reading Score'] = np.where(refined_df['Reading Score'] >upr_bound, median,refined_df['Reading Score'])
+
+refined_df['Reading Score'] = np.where(refined_df['Reading Score'] < lwr_bound, 
+                                       median,refined_df['Reading Score'])
+
+col = ['Reading Score']
+refined_df.boxplot(col)
+plt.show()
+
+df['reading score'].plot(kind = 'hist')
+plt.show()
+
+import matplotlib.pyplot as plt
+df['reading score'].plot(kind = 'hist')
+plt.show()

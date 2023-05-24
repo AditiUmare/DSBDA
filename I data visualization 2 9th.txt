@@ -1,0 +1,67 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+data = pd.read_csv('train.csv')
+data.head
+tips = load_dataset("tips")
+sns.countplot(data['survived'])
+plt.show()
+data['sex'].value_counts().plot(kind="pie", autopct="%.2f")
+plt.show()
+
+sns.boxplot(x='Sex', y='Age', hue='Survived', data=data)
+
+# Set plot labels and title
+plt.xlabel('Gender')
+plt.ylabel('Age')
+plt.title('Distribution of Age with respect to Gender and Survival')
+
+# Show the plot
+plt.show()
+
+plt.hist(data['class'], bins=5)
+plt.show()
+
+sns.distplot(data['survived'])
+plt.show()
+
+plt.scatter(tips["total_bill"], tips["tip"])
+plt.show() //error
+
+plt.scatter(tips["total_bill"], tips["tip"])
+plt.show()
+
+sns.barplot(data['pclass'], data['age'])
+plt.show()
+
+sns.barplot(data['pclass'], data['fare'], hue = data["sex"])
+plt.show()
+
+sns.boxplot(data['sex'], data["age"])
+plt.show()
+
+sns.boxplot(data['sex'], data["age"], data["survived"])
+plt.show() 
+
+sns.distplot(data[data['survived'] == 0]['age'], hist=False, color="blue")
+sns.distplot(data[data['survived'] == 1]['age'], hist=False, color="orange")
+plt.show()
+
+pd.crosstab(data['pclass'], data['survived'])
+
+sns.heatmap(pd.crosstab(data['pclass'], data['survived']))
+plt.show()
+
+sns.clustermap(pd.crosstab(data['parch'], data['survived']))
+plt.show()
+
+
+median=data['Age'].median()
+median
+refined_df=data
+lower_bound = median - 1.5 * data['Age'].std()
+upper_bound = median + 1.5 * data['Age'].std()
+data.loc[data['Age'] > upper_bound, 'Age'] = median
+refined_df

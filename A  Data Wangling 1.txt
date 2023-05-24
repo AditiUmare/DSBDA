@@ -1,0 +1,26 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+weather = pd.read_csv("weatherAUS.csv")
+weather.head()
+weather.info()
+weather.describe(include = 'all')
+print(weather.std())
+print(weather.median())
+weather.shape
+weather.isnull().sum()
+weather.tail(5)
+weather.index
+weather.columns
+weather.dtypes
+weather.columns.values
+weather['Location']
+weather.sort_index(axis = 1 , ascending = False)
+weather.sort_values(by = "MaxTemp")
+weather.iloc[5]
+weather[0:3]
+weather.loc[: , ["MinTemp" , "MaxTemp"]]
+weather.iloc[: , :5]
+weather.iloc[:3 , :5]

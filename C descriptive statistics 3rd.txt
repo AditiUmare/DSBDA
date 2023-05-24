@@ -1,0 +1,59 @@
+part 1
+
+import pandas as pd
+import numpy as np
+
+df=pd.read_csv("Employee_Salary_Dataset.csv")
+df
+
+df.mean()
+df.loc[:,'Age'].mean()
+df.mean(axis=1)[0:4]
+df.median()
+df.loc[:,'Age'].median()
+df.median(axis=1)[0:4]
+df.mode()
+df.loc[:,'Age'].mode()
+df.min()
+df.loc[:,'Age'].min(skipna = False)
+df.max()
+df.loc[:,'Age'].max(skipna = False)
+df.std()
+df.loc[:,'Age'].std()
+df.std(axis=1)[0:4]
+df.groupby(['Gender'])['Age'].mean()
+df_u=df.rename(columns= {'Annual Incomek$)':'Salary'},inplace=False)
+(df_u.groupby(['Gender']).Salary.mean())
+
+from sklearn import preprocessing
+enc = preprocessing.OneHotEncoder()
+enc_df = pd.DataFrame(enc.fit_transform(df[['Salary']]).toarray())
+enc_df
+
+df_encode =df_u.join(enc_df)
+df_encode
+
+PART 2
+import pandas as pd
+import numpy as np
+import matplolib.pyplot as plt
+
+df=pd.read_csv("iris.csv")
+df
+
+col_names =['Sepal_Length','Sepal_Width','Petal_Length','Petal_Width','Species']
+df= pd.read_csv('iris.csv')
+df.head()
+
+irisSet = (iris['species']== 'setosa')
+print('setosa')
+print(df[irisSet].describe())
+
+irisVir = (iris['species']== 'virginica')
+print('virginica')
+print(df[irisVir].describe())
+
+print('virginica')
+print(df[irisVir].describe())
+
+
