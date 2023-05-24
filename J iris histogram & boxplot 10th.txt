@@ -23,6 +23,9 @@ plt.show()
 
 df=pd.read_csv("/home/student/Desktop/COTB45/LAB10/IRIS.csv")
 df_min, df_max = df.min(), df.max()
+print(df_min)
+print(df_max)
+
 
 from numpy import percentile
 from numpy.random import rand
