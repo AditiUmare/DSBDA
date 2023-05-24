@@ -1,0 +1,48 @@
+sentence1 = "The magnificent castle stood tall on top of the hill, its grandeur captivating anyone who laid eyes upon it, while the sun cast a golden glow over the surrounding landscape," + \
+            "painting a picturesque scene that seemed to come straight out of a fairytale."
+sentence2 = "The cat chased the mouse around the house, causing quite a commotion."
+
+
+import nltk
+nltk.download('punkt')
+
+from nltk import word_tokenize, sent_tokenize
+
+print('Tokenized words:', word_tokenize(sentence1))
+print('\nTokenized sentences:', sent_tokenize(sentence1))
+
+import nltk
+nltk.download('averaged_perceptron_tagger')
+
+from nltk import pos_taga
+token = word_tokenize(sentence1) + word_tokenize(sentence2)
+tagged = pos_tag(token)                 
+print("Tagging Parts of Speech:", tagged)
+
+
+import nltk
+nltk.download('stopwords')
+
+from nltk.corpus import stopwords
+
+stop_words = stopwords.words('english')
+
+token = word_tokenize(sentence1)
+cleaned_token = []
+
+for word in token:
+    if word not in stop_words:
+        cleaned_token.append(word)
+
+print('Unclean version:', token)
+print('\nCleaned version:', cleaned_token)
+
+
+from nltk.stem import PorterStemmer
+
+stemmer = PorterStemmer()
+
+token = word_tokenize(sentence2)
+
+stemmed = [stemmer.stem(word) for word in token]
+print(" ".join(stemmed))
