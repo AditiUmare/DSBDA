@@ -25,6 +25,7 @@ df.groupby(['Gender'])['Age'].mean()
 df_u=df.rename(columns= {'Annual Incomek$)':'Salary'},inplace=False)
 (df_u.groupby(['Gender']).Salary.mean())
 
+#encoding categorical variables into numeric format.
 from sklearn import preprocessing
 enc = preprocessing.OneHotEncoder()
 enc_df = pd.DataFrame(enc.fit_transform(df[['Salary']]).toarray())
@@ -34,9 +35,9 @@ df_encode =df_u.join(enc_df)
 df_encode
 
 PART 2
-import pandas as pd
-import numpy as np
-import matplolib.pyplot as plt
+import pandas as pd # data cleaning , transformation etc
+import numpy as np  #arrays , numerical data
+import matplolib.pyplot as plt #charts , plots
 
 df=pd.read_csv("iris.csv")
 df
