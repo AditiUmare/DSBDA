@@ -12,6 +12,7 @@ df[series]
 series1 = pd.notnull(df["math score"])
 df[series1]
 
+#encoding categorical variables into numeric format.
 from sklearn.preprocessing import LabelEncoder
 le = LabelEncoder()
 
@@ -59,10 +60,10 @@ print(np.where((df['Placement Score']<85) & (df['Placement offer count']<3)))
 
 import numpy as np
 from scipy import stats
-z = np.abs(stats.zscore(df['Math Score']))
+z = np.abs(stats.zscore(df['Math Score'])) #+ve z score --> value above mean 
 print(z)
 
-threshold = 0.18
+threshold = 0.18 #predefined & data point is considered an outlier or not.
 sample_outliers = np.where(z <threshold)
 sample_outliers
 
