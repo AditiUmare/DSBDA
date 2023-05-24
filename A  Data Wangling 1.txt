@@ -1,9 +1,9 @@
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
+import numpy as np  #array , numerical data
+import pandas as pd  #data cleaning , transforming , manipulation
+import matplotlib.pyplot as plt  #plots charts 
+import seaborn as sns  #informative statistical graphics
 
-weather = pd.read_csv("weatherAUS.csv")
+weather = pd.read_csv("weatherAUS.csv")  #comma separted values
 weather.head()
 weather.info()
 weather.describe(include = 'all')
@@ -12,14 +12,14 @@ print(weather.median())
 weather.shape
 weather.isnull().sum()
 weather.tail(5)
-weather.index
+weather.index   #labels or identifiers
 weather.columns
 weather.dtypes
 weather.columns.values
 weather['Location']
-weather.sort_index(axis = 1 , ascending = False)
+weather.sort_index(axis = 1 , ascending = False) #sorting on columns
 weather.sort_values(by = "MaxTemp")
-weather.iloc[5]
+weather.iloc[5] #retrives row at index 5
 weather[0:3]
 weather.loc[: , ["MinTemp" , "MaxTemp"]]
 weather.iloc[: , :5]
