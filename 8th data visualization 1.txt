@@ -10,38 +10,49 @@ import seaborn as sns
 dataset = sns.load_dataset('titanic')
 dataset.head()
 
+#creates the distribution plot
+#displays the histogram of the 'fare' values
 sns.distplot(dataset['fare'])
 plt.show()
 
-sns.distplot(dataset['fare'], kde=False, bins=10)
+#disable the KDE curve
+#divide the data range into 10 bins.
+sns.distplot(dataset['fare'], kde=False, bins=10) #kernal density estimation
 plt.show()
 
+# combines a scatter plot and histograms
 sns.jointplot(x='age', y='fare', data=dataset)
 plt.show()
 
 sns.jointplot(x='age', y='fare', data=dataset, kind='hex')
 plt.show()
 
+#remove any rows from the dataset that contain missing values.
 dataset = dataset.dropna()
+#creating scatter plots for each pair of variables.
 sns.pairplot(dataset)
 plt.show()
 
 sns.pairplot(dataset, hue='sex')
 plt.show()
 
+#1dimensional & density of tip amounts along the x-axis.
 sns.rugplot(dataset['fare'])
 plt.show()
 
+#calculates the average age for each category
 sns.barplot(x='sex', y='age', data=dataset)
 plt.show()
 
+#counts the occurrences of each category 
 sns.countplot(x='sex', data=dataset)
 plt.show()
 
+#median, quartiles, and potential outliers
 sns.boxplot(x='sex', y='age', data=dataset, hue="survived")
 plt.show()
 
-
+#width of each violin represents the density of age
 sns.violinplot(x='sex', y='age', data=dataset)
 plt.show()
 
@@ -60,12 +71,12 @@ plt.show()
 sns.stripplot(x='sex', y='age', data=dataset)
 plt.show()
 
+#compare the distribution of age between different genders.
 sns.stripplot(x='sex', y='age', data=dataset, jitter=True)
 plt.show()
 
 sns.stripplot(x='sex', y='age', data=dataset, jitter=True, hue='survived')
 plt.show()
-
 
 sns.stripplot(x='sex', y='age', data=dataset, jitter=True, hue='survived', split=True)
 plt.show()
@@ -77,7 +88,7 @@ plt.show()
 sns.swarmplot(x='sex', y='age', data=dataset, hue='survived')
 plt.show()
 
-
+#similar to the strip plot but with non-overlapping data points.
 sns.swarmplot(x='sex', y='age', data=dataset, hue='survived', split=True)
 plt.show()
 
