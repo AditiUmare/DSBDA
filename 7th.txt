@@ -3,7 +3,9 @@ sentence1 = "The magnificent castle stood tall on top of the hill, its grandeur 
 sentence2 = "The cat chased the mouse around the house, causing quite a commotion."
 
 
-import nltk
+#natural language processing (NLP) tasks.
+#splitting text into individual words or sentences (known as tokens)
+import nltk #toolkit
 nltk.download('punkt')
 
 from nltk import word_tokenize, sent_tokenize
@@ -14,9 +16,11 @@ print('\nTokenized sentences:', sent_tokenize(sentence1))
 import nltk
 nltk.download('averaged_perceptron_tagger')
 
+# split the sentences into individual words or tokens. 
 from nltk import pos_taga
 token = word_tokenize(sentence1) + word_tokenize(sentence2)
-tagged = pos_tag(token)                 
+#takes the list of tokens as input and assigns a POS tag to each word based on its #grammatical category.
+tagged = pos_tag(token) #parts of speech                
 print("Tagging Parts of Speech:", tagged)
 
 
@@ -25,9 +29,12 @@ nltk.download('stopwords')
 
 from nltk.corpus import stopwords
 
+#(the", "is", "a") that are often removed from text 
 stop_words = stopwords.words('english')
 
+# producing a list of individual words called token
 token = word_tokenize(sentence1)
+#store the words that are not stopwords.
 cleaned_token = []
 
 for word in token:
@@ -44,5 +51,6 @@ stemmer = PorterStemmer()
 
 token = word_tokenize(sentence2)
 
+#Finally, the stemmed words are joined back into a sentence using the " #".join(stemmed) expression, and the resulting stemmed sentence is printed.
 stemmed = [stemmer.stem(word) for word in token]
 print(" ".join(stemmed))
