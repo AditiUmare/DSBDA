@@ -49,11 +49,15 @@ sns.distplot(data[data['survived'] == 0]['age'], hist=False, color="blue")
 sns.distplot(data[data['survived'] == 1]['age'], hist=False, color="orange")
 plt.show()
 
+#count of occurrences for each combination of values 
 pd.crosstab(data['pclass'], data['survived'])
 
+# graphical representation of data in a matrix format,matrix in colours
 sns.heatmap(pd.crosstab(data['pclass'], data['survived']))
 plt.show()
 
+#calculates the cross-tabulation table between
+#performs hierarchical clustering on the rows and columns of the heatmap, #reordering them based on their similarity. 
 sns.clustermap(pd.crosstab(data['parch'], data['survived']))
 plt.show()
 
@@ -61,6 +65,7 @@ plt.show()
 median=data['Age'].median()
 median
 refined_df=data
+#calculates the lower bound for outliers. It subtracts 1.5 times the #standard deviation of the 'Age' column from the median.
 lower_bound = median - 1.5 * data['Age'].std()
 upper_bound = median + 1.5 * data['Age'].std()
 data.loc[data['Age'] > upper_bound, 'Age'] = median
