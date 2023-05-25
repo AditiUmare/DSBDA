@@ -26,8 +26,9 @@ df_min, df_max = df.min(), df.max()
 print(df_min)
 print(df_max)
 
-
+#calculates the specified percentile of a given dataset. 
 from numpy import percentile
+#generates random numbers between 0 and 1. 
 from numpy.random import rand
 
 # generate data sample
@@ -38,7 +39,9 @@ quartiles = percentile(df, [25, 50, 75])
 
 # calculate min/max
 df_min, df_max = df.min(), df.max()
-print('Min: %.3f' % df_min)
+## % string formatting ,df_min is inserted into the formatted string.
+print('Min: %.3f' % df_min)  
+#first element in the array
 print('Q1: %.3f' % quartiles[0])
 print('Median: %.3f' % quartiles[1])
 print('Q3: %.3f' % quartiles[2])
